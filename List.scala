@@ -1,14 +1,18 @@
 import scala.language.postfixOps
 package functional.datastructures{
 
-abstract class List[A] {
+abstract class List[+A] {
   def head: A
   def tail: List[A]
   def isEmpty: Boolean
   def length: Int
-  def ::(item:A):List[A]=new ListImpl[A](item,this)	
+  def ::[S >: A](item:S):List[S]=new ListImpl[S](item,this)
+  def drop(n: Int): List[A]  =  if (isEmpty) ListNil else if (n <= 0) this else tail.drop(n - 1)
+  def map[S](f: A => S): List[S] =if (isEmpty) ListNil else f(head) :: tail.map(f)
 }
- 
+
+
+
 class ListImpl[A](val head: A, val tail: List[A]) extends List[A] {
   def isEmpty = false
   def length: Int = 1 + tail.length
