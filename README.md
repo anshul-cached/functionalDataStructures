@@ -3,5 +3,6 @@
 
 1.Stack<br/>
 2.List<br/>
-3.Queue
+3.Queue<br/>
+4.Binary Search Tree
 
